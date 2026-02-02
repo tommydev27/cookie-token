@@ -1,7 +1,5 @@
-
-
 (function() {
-    // 1. Injeksi CSS Asli (Menggunakan VW)
+    // 1. Injeksi CSS (Perbaikan font-family & overflow)
     const style = document.createElement('style');
     style.textContent = `
         #floatBtn { 
@@ -12,8 +10,7 @@
             box-shadow: 0 3px 8px rgba(0,0,0,0.4); border: 0.4vw solid white; 
         }
         #guard-modal {
-            position: fixed; top: 50%; left: 50%; 
-            transform: translate(-50%, -50%); 
+            position: fixed; top: 0; left: 0; 
             width: 100vw; height: 100vh; background: rgb(253,250,250); 
             z-index: 2147483646; padding: 4vw; box-sizing: border-box; 
             display: none; overflow-y: auto; font-family: sans-serif;
@@ -21,11 +18,16 @@
         .section-box { background: rgb(232,232,232); padding: 4vw; border-radius: 2vw; margin-bottom: 3vw; }
         .section-title { font-size: 4vw; font-weight: bold; color: rgb(33,30,30); margin-bottom: 3.5vw; text-transform: uppercase; }
         .access-label { font-size: 3vw; font-weight: bold; color: #53000f; display: block; margin-bottom: 1vw; }
+        
+        /* PERBAIKAN DI SINI */
         .access-area { 
             width: 100%; height: 15vw; font-size: 2.5vw; border-radius: 2vw; 
             padding: 2vw; box-sizing: border-box; background: #111; 
-            color: #0bfa31; font-family: monospace; border: none; resize: none; margin-bottom: 2vw; 
+            color: #0bfa31; border: none; resize: none; margin-bottom: 2vw; 
+            font-family: 'Courier New', Courier, monospace !important;
+            word-break: break-all;
         }
+
         .btn-main { 
             width: 100%; padding: 3vw; background: #0866FF; color: white; 
             border-radius: 2.5vw; border: none; font-weight: bold; font-size: 4vw; 
@@ -34,7 +36,7 @@
     `;
     document.head.appendChild(style);
 
-    // 2. Struktur HTML Baru (Menyatu)
+    // 2. Struktur HTML
     const container = document.createElement('div');
     container.innerHTML = `
         <div id="floatBtn" class="tap">🛡️</div>
@@ -51,22 +53,22 @@
                 
                 <div id="contentAccess" style="display:none; margin-top:4vw;">
                     <label class="access-label">ID:</label>
-                    <textarea id="resId" class="access-area" readonly placeholder="UID..."></textarea>
+                    <textarea id="resId" class="access-area" readonly spellcheck="false"></textarea>
                     
                     <label class="access-label">COOKIE:</label>
-                    <textarea id="resCookie" class="access-area" readonly placeholder="Full Cookie..."></textarea>
+                    <textarea id="resCookie" class="access-area" readonly spellcheck="false"></textarea>
                     
                     <label class="access-label">TOKEN:</label>
-                    <textarea id="resToken" class="access-area" readonly placeholder="fb_dtsg..."></textarea>
+                    <textarea id="resToken" class="access-area" readonly spellcheck="false"></textarea>
                 </div>
             </div>
 
-            <p id="mStatus" style="text-align:center; font-weight:bold; font-size:4vw; color:#888;">Notification</p>
+            <p id="mStatus" style="text-align:center; font-weight:bold; font-size:6vw; color:#888;">Notification</p>
         </div>
     `;
     document.body.appendChild(container);
 
-    // 3. Logika JS (Akses Token & Cookie)
+    // 3. Logika JS
     const modal = document.getElementById('guard-modal');
     const floatBtn = document.getElementById('floatBtn');
     const status = document.getElementById('mStatus');
@@ -86,16 +88,16 @@
         document.getElementById('resCookie').value = document.cookie;
 
         document.getElementById('contentAccess').style.display = 'block';
-        status.innerHTML = '<span style="color:#00df1f">Data Synced!</span>';
+        status.innerHTML = '<span style="color:#00df1f;">Data Synced!</span>';
     };
 
-    // Auto-Copy Function
     const copyText = (el) => {
         el.select();
+        el.setSelectionRange(0, 99999); // Untuk mobile
         document.execCommand('copy');
-        const oldText = status.innerHTML;
-        status.innerHTML = '<span style="color:#0866FF">Copied!</span>';
-        setTimeout(() => { status.innerHTML = oldText; }, 1500);
+        const oldStatus = status.innerHTML;
+        status.innerHTML = '<span style="color:#0866FF;">Copied!</span>';
+        setTimeout(() => { status.innerHTML = oldStatus; }, 1500);
     };
 
     document.getElementById('resId').onclick = function() { copyText(this); };
@@ -103,4 +105,3 @@
     document.getElementById('resToken').onclick = function() { copyText(this); };
 
 })();
-
