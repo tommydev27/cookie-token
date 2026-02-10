@@ -3,16 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cokie-token</title>
+    <title>Get Token Cookie - TommyWeb</title>
     <style>
-        #status-container {
-            display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; font-family: sans-serif; padding:5px;
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .card {
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .logo-container {
+            margin-bottom: 20px;
+        }
+        .logo-container img {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo-icon {
+        font-size: 40px;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+        h1 {
+            font-size: 22px;
+            color: #1c1e21;
+            margin: 10px 0;
+            font-weight: 800;
+        }
+        p.description {
+            color: #606770;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+        .btn-download {
+            display: block;
+            background-color: #1877F2;
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        .instructions {
+            text-align: left;
+            border-top: 1px solid #ebedf0;
+            padding-top: 20px;
+        }
+        .instructions h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .instructions ol {
+            padding-left: 20px;
+            color: #606770;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 11px;
+            color: #90949c;
         }
     </style>
 </head>
 <body>
-    <div id="status-container"></div>
-    <script src="popup.js"></script>
+
+<div class="card">
+    <div class="logo-container">
+<span class="logo-icon">🍪</span>
+    </div>
+
+    <h1>GET TOKEN COOKIE</h1>
+    <p class="description">
+        Solusi cepat ambil Token EAAG/EAAB dan Cookie Facebook. <br>Dikembangkan oleh Tommy v2.7.
+    </p>
+
+    <a href="https://github.com/tommydev27/cookie-token/archive/refs/heads/main.zip" class="btn-download">
+        Download ZIP Sekarang
+    </a>
+
+    <div class="instructions">
+        <h3>Cara Pasang:</h3>
+        <ol>
+            <li>Download & Ekstrak file ZIP.</li>
+            <li>Buka Kiwi/Lemur Browser & masuk ke menu <b>Extensions</b>.</li>
+            <li>Aktifkan <b>Mode Pengembang</b>.</li>
+            <li>Klik <b>Load</b> dan pilih folder hasil ekstrak.</li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        Developed by <b>TommyWeb</b> © 2026
+    </div>
+</div>
+
 </body>
 </html>
