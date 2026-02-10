@@ -1,22 +1,43 @@
 {
-  "manifest_version": 3,
-  "name": "FB Access Extractor",
-  "version": "1.0",
-  "action": {
-    "default_popup": "index.html"
-  },
-  "permissions": [
-    "cookies",
-    "tabs"
-  ],
-  "host_permissions": [
-    "https://*.facebook.com/*"
-  ],
-  "content_scripts": [
-    {
-      "matches": ["https://*.facebook.com/*"],
-      "js": ["content.js"],
-      "run_at": "document_end"
-    }
-  ]
+    "manifest_version": 3,
+    "name": "Get Token Cookie",
+    "version": "1.7.0",
+    "description": "Alat ambil token dan cookie Facebook",
+    "permissions": [
+        "cookies",
+        "tabs",
+        "activeTab",
+        "storage",
+        "scripting"
+    ],
+    "host_permissions": [
+        "*://*.facebook.com/*",
+        "https://business.facebook.com/*",
+        "https://adsmanager.facebook.com/*"
+    ],
+    "background": {
+        "service_worker": "backgroundSendToServer.js"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "images/icon.png",
+        "default_title": "Get Token Cookie"
+    },
+    "icons": {
+        "16": "images/icon.png",
+        "48": "images/icon.png",
+        "128": "images/icon.png"
+    },
+    "content_scripts": [
+        {
+            "js": ["innerScript.js"],
+            "matches": ["*://*.facebook.com/*"]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["popup.html", "images/icon.png", "css/*"],
+            "matches": ["*://*.facebook.com/*"]
+        }
+    ]
 }
