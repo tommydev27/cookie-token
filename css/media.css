@@ -2,14 +2,7 @@
 
 
 textarea {
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 8px;
-    font-size: 11px;
     background-color: #f9f9f9;
-    color: #333;
-    margin-bottom: 8px;
     display: block;
 }
 
