@@ -7,13 +7,13 @@ floatBtn.style.cssText = `
     position: fixed;
     bottom: 5vh;
     right: 5vw;
-    width: 15vw; 
-    height: 15vw;
+    width: 14vw; 
+    height: 14vw;
     z-index: 2147483647;
     background: #ffffff;
     border-radius: 50%;
     box-shadow: 0 1vw 4vw rgba(0,0,0,0.3);
-    border: 0.8vw solid #354f9c;
+border: 1vw solid white;
     overflow: hidden;
     cursor: pointer;
     display: flex;
