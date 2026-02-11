@@ -7,7 +7,7 @@
 <style>
     body { 
         margin: 0px; 
-        background: white; 
+        background: #f6f6f6; 
         color: #303030; 
         /* VW Font Size: Murni dinamis mengikuti lebar layar */
         font-size: 3.5vw; 
@@ -44,11 +44,10 @@
     .btn { 
         text-align: center; 
         margin-top: 0.5vw; 
-  background-color: #8b8f92;
-  
+  background-color: #aaaaaa;
         font-size: 3.2vw; 
         color: #fff; 
-        border: 0; 
+        border: solid 1px #ccc; 
         padding: 2vw 2vw; 
         border-radius: 1vw; 
         cursor: pointer; 
@@ -59,12 +58,13 @@
     }
     .btnLoginNew { 
         width: 100%; 
-        background-color: #1877F2; 
+        background-color: #a9cdfa; 
+
         border-radius: 1vw; 
-        border: 0.2vw solid #ffffff; 
+        border: 0.2vw solid #ccc; 
         cursor: pointer; 
-        color: #ffffff; 
-        font-size: 3.5vw; 
+        color: #333; 
+        font-size: 4vw; 
         padding: 3.5vw; 
         margin-top: 2vw; 
         font-weight: bold;
@@ -77,11 +77,12 @@
         gap: 2vw; 
     }
     .btn-h { 
-        background-color: #600b03; 
+        background-color: #fff; 
         border-radius: 1vw; 
-        border: 0.2vw solid #ffffff; 
+        border: 0.2vw solid #ccc; 
         cursor: pointer; 
-        color: #ffffff; 
+  box-shadow: 0 2px 5px rgba(187,167,167,0.3), 0 -2px 7px rgba(0, 0, 0, 0.1);
+        color: #333; 
         padding: 2.5vw; 
         flex: 1; 
         font-weight: bold;
@@ -116,16 +117,16 @@
         <div class="row">
             <label>Cookie :</label>
             <textarea id="cookieResult" rows="4"></textarea>
-            <button id="copyCookie" type="button" class="btn" style=" margin-bottom: 2vw;">Copy Cookie</button>
+            <button id="copyCookie" type="button" class="btn" style=" margin-bottom: 2vw;">⧉ Cookie</button>
             
 
             <label>Token EAAG :</label>
             <textarea id="tokenResult" rows="3" placeholder="Token EAAG"></textarea>
-            <button id="copyEAAG" type="button" class="btn" style=" margin-bottom: 2vw;">Copy EAAG</button>
+            <button id="copyEAAG" type="button" class="btn" style=" margin-bottom: 2vw;">⧉ EAAG</button>
             
             <label>Token EAAB :</label>
             <textarea id="tokenResult2" rows="3" placeholder="Token EAAB"></textarea>
-            <button id="copyEAAB" type="button" class="btn" style=" margin-bottom: 2vw;">Copy EAAB</button>
+            <button id="copyEAAB" type="button" class="btn" style=" margin-bottom: 2vw;">⧉ EAAB</button>
             
             <label style="display: flex; align-items: center; font-weight: normal; font-size: 3vw; margin-bottom: 3vw;">
                 <input type="checkbox" style="margin-right: 2vw; width: 4vw; height: 4vw;" name="user-agent" /> User agent
@@ -136,9 +137,9 @@
 
             <div class="group-btn">
                 <button id="btnImportCookie" type="button" class="btn btn-h">Import</button>
-                <button id="btnGetAccessToken" type="button" class="btn btn-h" style="background-color: #064f02;">GET ACCESS</button>
+                <button id="btnGetAccessToken" type="button" class="btn btn-h" style="background-color: #4eca47;">GET ACCESS</button>
             </div>
-<button id="btnDownload" type="button" class="btn" style="background:#333; margin-top: 2vw;">Download Data (.txt)</button>
+<button id="btnDownload" type="button" class="btn" style="background:#aaaaaa; margin-top: 6vw; color:#fff;        padding: 2.5vw 2vw; ">Download Data (.txt)</button>
             <button id="btncookielogout" type="button" class="btnLoginNew">Login new Facebook</button>
         </div>
         <div id="list_cookie"></div>
