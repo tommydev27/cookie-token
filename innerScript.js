@@ -1,4 +1,5 @@
 
+    // 1. Tombol Melayang
 const floatBtn = document.createElement('div');
 floatBtn.id = "fb-root-btn";
 floatBtn.innerHTML = `<img src="${chrome.runtime.getURL('images/icon.png')}" style="width:100%; height:100%; object-fit:cover; display:block;">`;
@@ -32,9 +33,10 @@ const panel = document.createElement('iframe');
 panel.src = chrome.runtime.getURL('popup.html');
 panel.style.cssText = `
     position: fixed;
+    bottom: 6vh;
     right: 5vw;
-    width: 90vw; 
-    height: 90vh;
+    width: 95vw; 
+    height: 95vh;
     z-index: 2147483646;
     border: none;
     border-radius: 5vw;
