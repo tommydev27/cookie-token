@@ -1,29 +1,5 @@
-/* css/goodreads.css */
-.btn-h {
-    transition: background-color 0.3s ease;
-    font-weight: bold;
-    text-transform: uppercase;
-    flex: 1;
-}
 
-.btnLoginNew {
-    margin-top: 10px;
-    font-weight: bold;
-    transition: opacity 0.2s;
-}
 
 .btnLoginNew:hover {
     opacity: 0.9;
-}
-
-#fb_id {
-    font-size: 13px;
-    color: #555;
-    margin: 5px 0;
-}
-
-.alert-error {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
 }
