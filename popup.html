@@ -36,7 +36,7 @@
         margin-bottom: 2vw; 
         font-family: monospace; 
         /* Ukuran teks textarea mengikuti skala lebar */
-        font-size: 3vw; 
+        font-size: 2vw; 
         border: 0.2vw solid #ccc; 
         border-radius: 1vw; 
         padding: 2vw;
@@ -44,11 +44,12 @@
     .btn { 
         text-align: center; 
         margin-top: 0.5vw; 
-        background: #417211; 
-        font-size: 3vw; 
-        color: #ffffff; 
+  background-color: #8b8f92;
+  
+        font-size: 3.2vw; 
+        color: #fff; 
         border: 0; 
-        padding: 3vw 2vw; 
+        padding: 2vw 2vw; 
         border-radius: 1vw; 
         cursor: pointer; 
         display: block; 
@@ -72,7 +73,7 @@
         display: flex; 
         justify-content: center; 
         align-items: center; 
-        padding: 3vw 0px; 
+        padding: 2vw 0px; 
         gap: 2vw; 
     }
     .btn-h { 
@@ -86,7 +87,7 @@
         font-weight: bold;
     }
     .footer { 
-        font-size: 2.5vw; 
+        font-size: 3vw; 
         width: 100%; 
         background-color: #efefef; 
         border-top: solid 0.1vw gainsboro; 
@@ -115,29 +116,29 @@
         <div class="row">
             <label>Cookie :</label>
             <textarea id="cookieResult" rows="4"></textarea>
-            <button id="copyCookie" type="button" class="btn" style="background:#4a8c09; margin-bottom: 2vw;">Copy Cookie</button>
+            <button id="copyCookie" type="button" class="btn" style=" margin-bottom: 2vw;">Copy Cookie</button>
             
 
             <label>Token EAAG :</label>
             <textarea id="tokenResult" rows="3" placeholder="Token EAAG"></textarea>
-            <button id="copyEAAG" type="button" class="btn" style="background:#1877F2; margin-bottom: 2vw;">Copy EAAG</button>
+            <button id="copyEAAG" type="button" class="btn" style=" margin-bottom: 2vw;">Copy EAAG</button>
             
             <label>Token EAAB :</label>
             <textarea id="tokenResult2" rows="3" placeholder="Token EAAB"></textarea>
-            <button id="copyEAAB" type="button" class="btn" style="background:#1877F2; margin-bottom: 2vw;">Copy EAAB</button>
+            <button id="copyEAAB" type="button" class="btn" style=" margin-bottom: 2vw;">Copy EAAB</button>
             
             <label style="display: flex; align-items: center; font-weight: normal; font-size: 3vw; margin-bottom: 3vw;">
                 <input type="checkbox" style="margin-right: 2vw; width: 4vw; height: 4vw;" name="user-agent" /> User agent
             </label>
-<button id="btnDownload" type="button" class="btn" style="background:#607d8b; margin-top: 2vw;">Download Data (.txt)</button>
+
             <p id="fb_id" style="font-weight: bold; margin: 2vw 0; font-size: 3.5vw;"></p>
             <div class="loading-example" id="loading"></div>
 
             <div class="group-btn">
                 <button id="btnImportCookie" type="button" class="btn btn-h">Import</button>
-                <button id="btnGetAccessToken" type="button" class="btn btn-h" style="background-color: #4a8c09;">GET ACCESS</button>
+                <button id="btnGetAccessToken" type="button" class="btn btn-h" style="background-color: #064f02;">GET ACCESS</button>
             </div>
-            
+<button id="btnDownload" type="button" class="btn" style="background:#333; margin-top: 2vw;">Download Data (.txt)</button>
             <button id="btncookielogout" type="button" class="btnLoginNew">Login new Facebook</button>
         </div>
         <div id="list_cookie"></div>
