@@ -38,7 +38,6 @@ panel.style.cssText = `
     height: 100%;
     z-index: 2147483646;
     border: none;
-    border-radius: 5vw;
     box-shadow: 0 2vw 10vw rgba(0,0,0,0.5);
     display: none;
     background: white;
