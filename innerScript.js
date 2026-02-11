@@ -33,8 +33,7 @@ const panel = document.createElement('iframe');
 panel.src = chrome.runtime.getURL('popup.html');
 panel.style.cssText = `
     position: fixed;
-    bottom: 6vh;
-    right: 5vw;
+    bottom: 2vh;
     width: 95vw; 
     height: 95vh;
     z-index: 2147483646;
