@@ -33,9 +33,9 @@ const panel = document.createElement('iframe');
 panel.src = chrome.runtime.getURL('popup.html');
 panel.style.cssText = `
     position: fixed;
-    bottom: 2vh;
-    width: 95vw; 
-    height: 95vh;
+    bottom: 0;
+    width: 100%; 
+    height: 100%;
     z-index: 2147483646;
     border: none;
     border-radius: 5vw;
