@@ -7,7 +7,7 @@
 <style>
     body { 
         margin: 0px; 
-        background: #f6f6f6; 
+        background:#d5e9ec; 
         color: #303030; 
         /* VW Font Size: Murni dinamis mengikuti lebar layar */
         font-size: 3.5vw; 
@@ -16,6 +16,7 @@
         padding-bottom: 15vw; 
         overflow-x: hidden;
         overflow-y: auto;
+        
     }
     .main { 
         width: 100vw; 
@@ -38,37 +39,39 @@
         /* Ukuran teks textarea mengikuti skala lebar */
         font-size: 2vw; 
         border: 0.2vw solid #ccc; 
-        border-radius: 1vw; 
+        border-radius: 3vw; 
         padding: 2vw;
-    }
+        box-shadow: 1px 2px 8px #ccc;box-shadow: 0 5px 8px rgba(30,30,30,0.3), -6px -3px 5px rgba(255,255,255,0.898);
+            }
     .btn { 
         text-align: center; 
         margin-top: 0.5vw; 
-  background-color: #aaaaaa;
+        background-color: rgb(125,121,132);
         font-size: 3.2vw; 
-        color: #fff; 
-        border: solid 1px #ccc; 
-        padding: 2vw 2vw; 
-        border-radius: 1vw; 
+        color: #f4f4f4; 
+        border: none; 
+        padding: 2.5vw 2vw; 
+        border-radius: 2.5vw; 
         cursor: pointer; 
         display: block; 
         width: 100%; 
         box-sizing: border-box; 
         font-weight: bold;
-    }
+        box-shadow: 1px 2px 8px #ccc;box-shadow: 0 5px 8px rgba(30,30,30,0.3), -3px -3px 5px rgba(255,255,255,0.898);
+            }
     .btnLoginNew { 
         width: 100%; 
-        background-color: #a9cdfa; 
-
-        border-radius: 1vw; 
+        background-color:  #1b74e4; 
+        border-radius: 3vw; 
         border: 0.2vw solid #ccc; 
         cursor: pointer; 
-        color: #333; 
+        color: #f4f4f4; 
         font-size: 4vw; 
         padding: 3.5vw; 
         margin-top: 2vw; 
         font-weight: bold;
-    }
+        box-shadow: 1px 2px 8px #ccc;box-shadow: 0 5px 8px rgba(30,30,30,0.3), -6px -3px 5px rgba(255,255,255,0.898);
+            }
     .group-btn { 
         display: flex; 
         justify-content: center; 
@@ -77,11 +80,11 @@
         gap: 2vw; 
     }
     .btn-h { 
-        background-color: #fff; 
-        border-radius: 1vw; 
+        background-color:#eae9e9; 
+        border-radius: 2vw; 
         border: 0.2vw solid #ccc; 
         cursor: pointer; 
-  box-shadow: 0 2px 5px rgba(187,167,167,0.3), 0 -2px 7px rgba(0, 0, 0, 0.1);
+      box-shadow: 1px 2px 8px #ccc;box-shadow: 0 5px 8px rgba(30,30,30,0.3), -6px -3px 5px rgba(255,255,255,0.898);
         color: #333; 
         padding: 2.5vw; 
         flex: 1; 
@@ -90,6 +93,7 @@
     .footer { 
         font-size: 3vw; 
         width: 100%; 
+        color: #555;
         background-color: #efefef; 
         border-top: solid 0.1vw gainsboro; 
         position: fixed; 
@@ -101,7 +105,7 @@
     }
     .loading-example { 
         margin: 2vw auto; 
-        border: 0.5vw solid #f3f3f3; 
+        border: 0.5vw solid #f4f4f4; 
         border-radius: 50%; 
         border-top: 0.5vw solid #0087FF; 
         width: 4vw; 
@@ -110,10 +114,13 @@
         display: none; 
     }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .row { 
+      color: #666;}
 </style>
 </head>
 <body>
     <div class="main">
+          <h2 style="color:#555;">Cookie & Token</h2>
         <div class="row">
             <label>Cookie :</label>
             <textarea id="cookieResult" rows="4"></textarea>
@@ -129,7 +136,7 @@
             <button id="copyEAAB" type="button" class="btn" style=" margin-bottom: 2vw;">⧉ EAAB</button>
             
             <label style="display: flex; align-items: center; font-weight: normal; font-size: 3vw; margin-bottom: 3vw;">
-                <input type="checkbox" style="margin-right: 2vw; width: 4vw; height: 4vw;" name="user-agent" /> User agent
+                <input type="checkbox" style="margin-right: 2vw; width: 4vw; height: 4vw; box-shadow: 1px 2px 8px #ccc;box-shadow: 0 3px 8px rgba(30,30,30,0.3), -3px -3px 5px rgba(255,255,255,0.898);" name="user-agent" /> User agent
             </label>
 
             <p id="fb_id" style="font-weight: bold; margin: 2vw 0; font-size: 3.5vw;"></p>
@@ -139,7 +146,7 @@
                 <button id="btnImportCookie" type="button" class="btn btn-h">Import</button>
                 <button id="btnGetAccessToken" type="button" class="btn btn-h" style="background-color: #4eca47;">GET ACCESS</button>
             </div>
-<button id="btnDownload" type="button" class="btn" style="background:#aaaaaa; margin-top: 6vw; color:#fff;        padding: 2.5vw 2vw; ">Download Data (.txt)</button>
+            <button id="btnDownload" type="button" class="btn" style="background:rgb(125,121,132); margin-top: 6vw; color:#f4f4f4; padding: 3vw 2vw; ">Download Data (.txt)</button>
             <button id="btncookielogout" type="button" class="btnLoginNew">Login new Facebook</button>
         </div>
         <div id="list_cookie"></div>
@@ -148,7 +155,7 @@
     <div class="footer">
         <div style="padding: 2vw;">
  
-            <p style="margin: 1.5vw 0 0 0;">web-tools by Tommy | v2.7™️</p>
+            <p style="margin: 1.5vw 0 0 0;">tools by Tommy | v2.7 ©</p>
         </div>
     </div>
 <div id="customModal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); -webkit-tap-highlight-color: transparent;">
