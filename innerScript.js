@@ -51,5 +51,11 @@ floatBtn.onclick = (e) => {
     e.preventDefault();
     const isHidden = panel.style.display === "none";
     panel.style.display = isHidden ? "block" : "none";
+    
+    // Fungsi Full Screen
+    if (isHidden) {
+        document.documentElement.requestFullscreen().catch(e => console.log(e));
+    }
+
     floatBtn.style.transform = isHidden ? "scale(0.9)" : "scale(1)";
 };
